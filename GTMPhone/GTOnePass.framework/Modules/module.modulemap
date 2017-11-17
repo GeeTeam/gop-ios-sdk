@@ -1,0 +1,6 @@
+framework module GTOnePass {
+  umbrella header "GTOnePass.h"
+
+  export *
+  module * { export * }
+}

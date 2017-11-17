@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_purple" translatesAutoresizingMaskIntoConstraints="NO" id="vku-og-JDf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="wPp-SS-GUf">
+                                <rect key="frame" x="146" y="353" width="123" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Oqf-F8-UYX"/>
+                                    <constraint firstAttribute="width" constant="123" id="zJx-sk-99J"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="极验OnePass DEMO Power By Geetest. 2017" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOK-0N-Api">
+                                <rect key="frame" x="142" y="684" width="130" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="MLV-7R-PeW"/>
+                                    <constraint firstAttribute="width" constant="130" id="VjP-aH-Plv"/>
+                                    <constraint firstAttribute="height" constant="32" id="dST-yN-LMA"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="w5l-MP-T0y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                <color key="textColor" red="0.82745098039999998" green="0.82745098039999998" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yOK-0N-Api" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JnF-L9-kqG"/>
+                            <constraint firstItem="wPp-SS-GUf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Nkk-TF-A7n"/>
+                            <constraint firstItem="vku-og-JDf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="WVW-Ra-bVM"/>
+                            <constraint firstAttribute="trailing" secondItem="vku-og-JDf" secondAttribute="trailing" id="ir7-mX-bPQ"/>
+                            <constraint firstItem="vku-og-JDf" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="l6W-nk-Eee"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="yOK-0N-Api" secondAttribute="bottom" constant="20" id="qcP-Me-zll"/>
+                            <constraint firstItem="wPp-SS-GUf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="seq-sq-S0a"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="vku-og-JDf" secondAttribute="bottom" id="vBV-6k-GIC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background_purple" width="1334" height="1334"/>
+        <image name="logo_white" width="123" height="31"/>
+    </resources>
+</document>

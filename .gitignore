@@ -4,6 +4,8 @@
 
 ## Build generated
 build/
+Build/
+Products/
 DerivedData/
 
 ## Various settings
@@ -19,8 +21,10 @@ xcuserdata/
 
 ## Other
 *.moved-aside
+*.xcuserstate
 *.xccheckout
 *.xcscmblueprint
+.DS_Store
 
 ## Obj-C/Swift specific
 *.hmap

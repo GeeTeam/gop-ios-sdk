@@ -23,7 +23,7 @@ sdk三方依赖|无
 条目|资源|
 -------------	|--------------
 SDK下载			|[gop-ios-sdk](http://github.com/GeeTeam/gop-ios-sdk)
-错误码			|[Error Code](http://github.com/GeeTeam/gop-ios-sdk/master/SDK/gop-ios-dev-docs.md#errorcode)
+错误码			|[Error Code](http://github.com/GeeTeam/gop-ios-sdk/blob/master/SDK/gop-ios-dev-doc.md#errorcode)
 产品结构流程  	|[通讯流程](http://docs.geetest.com/onepass/overview/#通讯流程)
 
 # 安装

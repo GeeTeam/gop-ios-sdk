@@ -8,17 +8,42 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol GTOPManagerDelegate;
+@protocol GOPManagerDelegate;
+@class GOPResult;
+
+typedef NS_ENUM(NSInteger, GOPResultType) {
+    GOPResultOnePass,   // OnePass
+    GOPResultSMS        // SMS
+};
 
 typedef void(^GOPCompletion)(NSDictionary *dict);
 typedef void(^GOPFailure)(NSError *error);
 
+@interface GOPResult : NSObject
+
+@property (nonatomic, readonly, assign) GOPResultType type;
+
+@property (nonatomic, readonly, copy) NSString *resultCode;// @"0" is success, otherwise fail.
+
+@property (nonatomic, readonly, copy) NSString *customID;// custom id
+@property (nonatomic, readonly, copy) NSString *processID;// process id
+
+@property (nonatomic, readonly, copy) NSString *content;// content, OnePass SUCCESS only
+
+@property (nonatomic, readonly, copy) NSString *messageID;// message id, SMS SUCCESS
+
+@property (nonatomic, readonly, assign) NSTimeInterval duration;// duration of onepass
+@property (nonatomic, readonly, copy) NSDictionary *metadata;
+
+@end
+
 @interface GOPManager : NSObject
 
-@property (nonatomic, weak) id<GTOPManagerDelegate> delegate;
+@property (nonatomic, weak) id<GOPManagerDelegate> delegate;
 
 /**
- Diagnosis current network status. If OnePass could work, `diagnosisStatus` return YES.
+ Diagnosis current network status. If OnePass could work,
+ `diagnosisStatus` return YES.
  */
 @property (nonatomic, readonly, assign) BOOL diagnosisStatus;
 
@@ -26,43 +51,39 @@ typedef void(^GOPFailure)(NSError *error);
  Initializes and returns a newly allocated GOPManager
  object with the specified frame rectangle
  
- @discussion Register customID from `geetest.com`, and configure your
-             configUrl/verifyUrl API base on Server SDK. Check Docs on `docs.geetest.com`. If OnePass fail, GOPManager will
-             request SMS URL that you set.
+ @discussion Register customID from `geetest.com`, and configure your verifyUrl
+             API base on Server SDK. Check Docs on `docs.geetest.com`. If OnePass
+             fail, GOPManager will request SMS URL that you set.
  @param customID custom ID, nonull
- @param configUrl configuration URL, nonull
  @param verifyUrl verify URL, nonull
  @param timeout timeout interval
  @return A initialized GOPManager object.
  */
-- (instancetype)initWithCustomID:(NSString *)customID configUrl:(NSString *)configUrl verifyUrl:(NSString *)verifyUrl timeout:(NSTimeInterval)timeout;
+- (instancetype)initWithCustomID:(NSString *)customID verifyUrl:(NSString *)verifyUrl timeout:(NSTimeInterval)timeout;
 
 /**
- Bind GOPManager to ViewController.
- */
-- (void)bind;
+ Verify phone number through OnePass. See a sample result from 
+ `https://github.com/GeeTeam/gop-ios-sdk/blob/master/SDK/gop-ios-dev-doc.md#verifyphonenumcompletionfailure`
+ 
+ @discussion Country Code `+86` Only. Regex rule `^1([3-9])\\d{9}$`.
+             If you don't want to use validate, you should modify customID property
+             by contacting geetest stuff first.
+             QQ:2314321393 or E-mail: contact@geetest.com
 
-/**
- Verify phone number through OnePass.
-
- @param phoneNum phone number
+ @param phoneNum phone number, nonull
+ @param validate GT3Captcha validate, get this value from result[@"geetest_validate"]
  @param completion completion handler
  @param failure failure handler
  */
-- (void)verifyPhoneNum:(NSString *)phoneNum completion:(GOPCompletion)completion failure:(GOPFailure)failure;
-
-/**
- Unbind GOPManager.
- */
-- (void)unbind;
+- (void)verifyPhoneNum:(NSString *)phoneNum withCaptchaValidate:(NSString *)validate completion:(GOPCompletion)completion failure:(GOPFailure)failure;
 
 @end
 
 /**
- * Manager related to the operation of a verification that handle request
- * directly to the delegate.
+ Manager related to the operation of a verification that handle request
+ directly to the delegate.
  */
-@protocol GTOPManagerDelegate <NSObject>
+@protocol GOPManagerDelegate <NSObject>
 
 @optional
 

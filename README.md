@@ -2,9 +2,9 @@
 
 了解产品: [www.geetest.com](www.geetest.com)
 
-需要拖入仓库`SDK`路径下的`GTOnePass.framework`, `GT3Captcha.framework`, `GT3Captcha.bundle`, `TYRENoUISDK.framework` 4个文件
+需要拖入仓库`SDK`路径下的`GTOnePass.framework`, `TYRENoUISDK.framework` 4个文件
 
-需要同时集成`test-Button`产品
+同时需要集成`test-Button`产品的`GT3Captcha.framework`, `GT3Captcha.bundle`文件以获取相关参数。
 
 # 概述及资源
 
@@ -18,13 +18,14 @@
 产品依赖|[test-Button](http://docs.geetest.com/install/overview/)
 sdk三方依赖|无		
 
-## 资源下载
+## 相关开发资料
 
 条目|资源|
 -------------	|--------------
 SDK下载			|[gop-ios-sdk](http://github.com/GeeTeam/gop-ios-sdk)
-错误码			|[Error Code](http://github.com/GeeTeam/gop-ios-sdk/master/SDK/gop-ios-dev-docs.md#errorcode)
-产品结构流程  	|[通讯流程](http://docs.geetest.com/onepass/overview/#通讯流程)
+接口文档		|[gop-ios-header-docs](http://github.com/GeeTeam/gop-ios-sdk/blob/master/SDK/gop-ios-dev-doc.md)或查看头文件注释
+错误码			|[Error Code](http://github.com/GeeTeam/gop-ios-sdk/blob/master/SDK/gop-ios-dev-doc.md#errorcode)
+产品结构流程  	|[交互流程](http://docs.geetest.com/onepass/overview/#交互流程),[通讯流程](http://docs.geetest.com/onepass/overview/#通讯流程)
 
 # 安装
 
@@ -57,7 +58,7 @@ git clone git@github.com:GeeTeam/gop-ios-sdk.git
 
 ## 配置接口
 
-开发者集成客户端sdk前, 必须先在您的服务器上搭建相应的**服务端SDK**，并配置从[极验后台](https://account.geetest.com/login)获取的`id`和`key`, 并且将配置的用户获取配置的接口`API1`和`API2`放入客户端的初始化方法中。
+开发者集成客户端sdk前, 必须先在您的服务器上搭建相应的**服务端SDK**，并配置从[极验后台](https://account.geetest.com/login)获取的`id`和`key`, 并且将配置的用户获取配置的接口`config_url`和`verify_url`放入客户端的初始化方法中。
 
 集成用户需要使用iOS SDK完成提供的以下接口:
 
@@ -92,8 +93,6 @@ git clone git@github.com:GeeTeam/gop-ios-sdk.git
 初始化验证管理器`GOPManager`的实例, 在相应的控制页初始化方法中对`GOPManager `实例调用注册方法以获得注册数据:
 	
 ```objc
-//网站主部署的用于ONEPASS的register接口
-#define config_url @"***"
 //网站主部署的ONEPASS的校验接口
 #define verify_url @"***"
 ...
@@ -105,23 +104,22 @@ git clone git@github.com:GeeTeam/gop-ios-sdk.git
     
     return _manager;
 }
-	
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    
-    if (self) {
-        [self.manager bind];
-    }
-    return self;
+```
+
+### 进行人机验证
+
+```objc
+- (void)startCaptcha {
+	// 请参考demo或test-button内容
 }
 ```
 	
 ### 进行onepass校验
 	
-初始化和注册完成后, 自定义方法`verifyPhoneNum:`来进行对本机号码校验:
+获取到人机验证的`validate`后, 自定义方法`verifyPhoneNum:`来进行对本机号码校验:
 	
 ```objc
-- (void)verifyPhoneNum:(NSString *)num {
+- (void)verifyPhoneNum:(NSString *)num validate:(NSString *) validate {
     
     //自定义规则检测输入的手机号码的合法性
     if (![self checkPhoneNumFormat:num]) return;
@@ -129,7 +127,7 @@ git clone git@github.com:GeeTeam/gop-ios-sdk.git
     // TODO UI相关操作
     
     // TODO 调用onepass校验接口
-	[self.manager verifyPhoneNum:num completion:^(NSDictionary *dict) {
+	[self.manager verifyPhoneNum:num withCaptchaValidate:validate completion:^(NSDictionary *dict) {
         ...
     } failure:^(NSError *error) {
         ...
@@ -142,9 +140,12 @@ git clone git@github.com:GeeTeam/gop-ios-sdk.git
 onepass在校验成功后, 返回的onepass结果, 如果失败通过短信验证码作为补充
 
 ```objc
-[self.manager verifyPhoneNum:num completion:^(NSDictionary *dict) {
+NSString *num = 手机号;
+NSString *validate = 验证校验结果
+
+[self.manager verifyPhoneNum:num withCaptchaValidate:validate completion:^(NSDictionary *dict) {
     NSString *type = [dict objectForKey:@"type"];
-    if ([type isEqualToString:@"gw"]) {// No sense Success
+    if ([type isEqualToString:@"onepass"]) {// No sense Success
         // TODO onepass成功
     }
     else {

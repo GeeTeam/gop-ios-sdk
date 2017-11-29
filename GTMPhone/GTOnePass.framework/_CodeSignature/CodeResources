@@ -4,66 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>GT3Captcha.bundle/Assets.car</key>
-		<data>
-		sjEt2LuMEHu6gbYpbPFhVcUzvc4=
-		</data>
-		<key>GT3Captcha.bundle/GT3Captcha</key>
-		<data>
-		0vSK9GrHbzM4NRkGb2S+ezODy6w=
-		</data>
-		<key>GT3Captcha.bundle/Info.plist</key>
-		<data>
-		/0n8LywzBOMZ76G/HycbvX+ZvIc=
-		</data>
-		<key>GT3Captcha.bundle/en.lproj/GT3Captcha.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			SEniEg+URfQuCcQnkhNk/YVr0Tg=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hans.lproj/GT3Captcha.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			UUebxosky6L9niONBTA0wsc437M=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hans.lproj/Info.plist</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Rd+m45TRTOD+9xykhmMAzqfLT8g=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hant.lproj/GT3Captcha.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			UUBqo35z1o2ghbcFxPn3PyO/ASQ=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hant.lproj/Info.plist</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Rd+m45TRTOD+9xykhmMAzqfLT8g=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
 		<key>Headers/GOPManager.h</key>
 		<data>
-		Cz7zkRtmSiLr7PqKHP21wK1BgbA=
+		VeyFf969hKtySfw0v98WrzwSV80=
 		</data>
 		<key>Headers/GTOnePass.h</key>
 		<data>
@@ -71,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		HT+KrsE5AaxJfCgezpJFV913pI8=
+		5Er73FmOpPUDk4FdnBzvhBDxHGY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -80,113 +23,15 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>GT3Captcha.bundle/Assets.car</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			sjEt2LuMEHu6gbYpbPFhVcUzvc4=
-			</data>
-			<key>hash2</key>
-			<data>
-			zlmGcS8/8c9YOi0jbct86BpS5I/TMfCC5JlqMtNL4qs=
-			</data>
-		</dict>
-		<key>GT3Captcha.bundle/GT3Captcha</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			0vSK9GrHbzM4NRkGb2S+ezODy6w=
-			</data>
-			<key>hash2</key>
-			<data>
-			wESg4cfYLK+kioz4yqiSlYy/0qXX7+D5a0mLoNxwUxI=
-			</data>
-		</dict>
-		<key>GT3Captcha.bundle/Info.plist</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/0n8LywzBOMZ76G/HycbvX+ZvIc=
-			</data>
-			<key>hash2</key>
-			<data>
-			dnvaC7lMO+TBpkCL4iFu5Z76SqDRsFK52TuxUtN6+b8=
-			</data>
-		</dict>
-		<key>GT3Captcha.bundle/en.lproj/GT3Captcha.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			SEniEg+URfQuCcQnkhNk/YVr0Tg=
-			</data>
-			<key>hash2</key>
-			<data>
-			2YbeUZL4UlupaWkxODc2LfnyyiEI+SnVPmY9qy3dqcs=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hans.lproj/GT3Captcha.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			UUebxosky6L9niONBTA0wsc437M=
-			</data>
-			<key>hash2</key>
-			<data>
-			L+veXxx8479bISHwgzSckCVODXCD7tq8gPUgBcp/sbc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hans.lproj/Info.plist</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Rd+m45TRTOD+9xykhmMAzqfLT8g=
-			</data>
-			<key>hash2</key>
-			<data>
-			LIy9jeCfuKTXqaKp0aUYmTMoUPdG09/xULGHtDgsbB8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hant.lproj/GT3Captcha.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			UUBqo35z1o2ghbcFxPn3PyO/ASQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			aJauxfX66awytaSsAyoj2OgRuqIwcZJGGF2+LbeGIuc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>GT3Captcha.bundle/zh-Hant.lproj/Info.plist</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Rd+m45TRTOD+9xykhmMAzqfLT8g=
-			</data>
-			<key>hash2</key>
-			<data>
-			LIy9jeCfuKTXqaKp0aUYmTMoUPdG09/xULGHtDgsbB8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
 		<key>Headers/GOPManager.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Cz7zkRtmSiLr7PqKHP21wK1BgbA=
+			VeyFf969hKtySfw0v98WrzwSV80=
 			</data>
 			<key>hash2</key>
 			<data>
-			x11HSYOpx9p69P2npQuLeGrzH6aXuvRuBvS8vZ/ETUY=
+			Lcujd6bRhgRxORxdWYQ0RqtkH3y78kTSU6RghUhU/b0=
 			</data>
 		</dict>
 		<key>Headers/GTOnePass.h</key>

@@ -169,7 +169,7 @@ manager 	|验证管理器
 dict		|接收到的返回数据, 以JSON格式解析
 error		|请求中的错误
 
-#### gtOnePass:willRequestVerify:withReplacedHandler:
+### gtOnePass:willRequestVerify:withReplacedHandler:
 
 修改OnePass结果校验的请求
 

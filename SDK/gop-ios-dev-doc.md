@@ -1,8 +1,116 @@
-[TOC]
-
 **GTOnePass iOS API Document**
 
-2017 11.29 edited
+2018 01.12 edited
+
+# Protocol
+
+## GOPManagerDelegate
+
+`GOPManager`相关操作, 操作验证过程中的请求行为
+
+### gtOnePass:willRequestVerify:withReplacedHandler:
+
+修改OnePass结果校验的请求
+
+**Declaration**
+
+```objc
+- (void)gtOnePass:(GOPManager *)manager willRequestVerify:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
+```
+
+**Parameters**
+
+Param		|Description	
+----------|------------	
+manager 	|验证管理器		
+originalRequest|原始请求
+replacedHandler|返回修改后请求回调
+
+**Discussion**
+
+不支持在子线程操作
+
+### gtOnePass:didReceiveVerify:withError:
+
+处理OnePass校验结果
+
+**Declaration**
+
+```objc
+- (void)gtOnePass:(GOPManager *)manager didReceiveVerify:(NSData *)data withError:(NSError *)error;
+```
+
+**Parameters**
+
+Param		|Description	
+----------|------------	
+manager 	|验证管理器		
+data		|接收到的返回数据
+error		|请求中的错误
+
+### shouldUseDefaultSMSAPI:
+
+通知代理是否使用默认的短信接口
+
+**Declaration**
+
+```objc
+- (BOOL)shouldUseDefaultSMSAPI:(GOPManager *)manager;
+```
+
+**Parameters**
+
+Param		|Description	
+----------|------------	
+manager 	|验证管理器
+
+**Return Value**
+
+返回`NO`则使用默认行为。默认为`YES`。
+
+### gtOnePass:willRequestSMS:withReplacedHandler:
+
+修改默认发送短信的请求
+
+**Declaration**
+
+```objc
+- (void)gtOnePass:(GOPManager *)manager willRequestSMS:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
+```
+
+**Parameters**
+
+Param		|Description	
+----------|------------	
+manager 	|验证管理器		
+originalRequest|原始请求
+replacedHandler|返回修改后请求回调
+
+**Discussion**
+
+只有当`shouldUseDefaultSMSAPI:`返回`YES`后, 此方法才会被调用
+
+### gtOnePass:didReceiveSMS:withError:
+
+处理发送短信验证接口的返回
+
+**Declaration**
+
+```objc
+- (void)gtOnePass:(GOPManager *)manager didReceiveSMS:(NSData *)data withError:(NSError *)error;
+```
+
+**Parameters**
+
+Param		|Description	
+----------|------------	
+manager 	|验证管理器		
+data		|接收到的返回数据
+error		|请求中的错误
+
+**Discussion**
+
+只有当`shouldUseDefaultSMSAPI:`返回`YES`后, 此方法才会被调用
 
 # GOPManager
 
@@ -16,7 +124,7 @@ OnePass代理
 
 **Declaration**
 
-```
+```objc
 @property (nonatomic, weak) id<GOPManagerDelegate> delegate;
 ```
 
@@ -26,8 +134,18 @@ OnePass代理
 
 **Declaration**
 
-```
+```objc
 @property (nonatomic, readonly, assign) BOOL diagnosisStatus;
+```
+
+### currentPhoneNum
+
+获取当前的手机号。如果加密, 返回加密后的。
+
+**Declaration**
+
+```objc
+@property (nonatomic, readonly, copy) NSString *currentPhoneNum;
 ```
 
 ## Method
@@ -38,7 +156,7 @@ OnePass代理
 
 **Declaration**
 
-```
+```objc
 - (instancetype)initWithCustomID:(NSString *)customID verifyUrl:(NSString *)verifyUrl timeout:(NSTimeInterval)timeout;
 ```
 
@@ -66,15 +184,9 @@ timeout	|本地各请求的超时时间
 
 **Declaration**
 
-```
+```objc
 - (void)verifyPhoneNum:(NSString *)phoneNum withCaptchaValidate:(NSString *)validate completion:(GOPCompletion)completion failure:(GOPFailure)failure;
 ```
-
-**Discussion**
-
-OnePass需要设备的数据网络支持。如果OnePass失败, 会使用短信进行补充当前的场景。极验提供默认的短信服务, 开发者也可通过接口关闭默认的短信行为, 切换为自己的短信系统。
-
-目前仅支持大陆地区的手机号。SDK内部默认正则规则为`'^1([3-9])\\d{9}$'`。
 
 **Parameters**
 
@@ -113,161 +225,17 @@ failure	|OnePass失败回调, 返回网络层面或者业务层面的错误
 		}
 		```
 
+**Discussion**
+
+OnePass需要设备的数据网络支持。如果OnePass失败, 会使用短信进行补充当前的场景。极验提供默认的短信服务, 开发者也可通过接口关闭默认的短信行为, 切换为自己的短信系统。
+
+目前仅支持大陆地区的手机号。SDK内部默认正则规则为`'^1([3-9])\\d{9}$'`。
+
 **Seealso**
 
 `- (BOOL)shouldUseDefaultSMSAPI:(GOPManager *)manager;`
 
-[Error Code清单](#errorcode)
-
-# Protocol
-
-## GOPManagerDelegate
-
-`GOPManager`相关操作, 操作验证过程中的请求行为
-
-### gtOnePass:willRequestConfig:withReplacedHandler:
-
-修改OnePass的configURL上的请求
-
-**Declaration**
-
-```
-- (void)gtOnePass:(GOPManager *)manager willRequestConfig:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
-```
-
-**Discussion**
-
-不支持在子线程操作
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器		
-originalRequest|原始请求
-replacedHandler|返回修改后请求回调
-
-### gtOnePass:didReceiveConfig:withError;
-
-处理从configURL收到的返回, 并作自定义解析
-
-**Declaration**
-
-```
-- (NSDictionary *)gtOnePass:(GOPManager *)manager didReceiveConfig:(NSDictionary *)dict withError:(NSError *)error;
-```
-
-**Discussion**
-
-不支持在子线程操作
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器		
-dict		|接收到的返回数据, 以JSON格式解析
-error		|请求中的错误
-
-### gtOnePass:willRequestVerify:withReplacedHandler:
-
-修改OnePass结果校验的请求
-
-**Declaration**
-
-```
-- (void)gtOnePass:(GOPManager *)manager willRequestVerify:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
-```
-
-**Discussion**
-
-不支持在子线程操作
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器		
-originalRequest|原始请求
-replacedHandler|返回修改后请求回调
-
-### gtOnePass:didReceiveVerify:withError:
-
-处理OnePass校验结果
-
-**Declaration**
-
-```
-- (void)gtOnePass:(GOPManager *)manager didReceiveVerify:(NSData *)data withError:(NSError *)error;
-```
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器		
-data		|接收到的返回数据
-error		|请求中的错误
-
-### shouldUseDefaultSMSAPI:
-
-通知代理是否使用默认的短信接口
-
-**Declaration**
-
-```
-- (BOOL)shouldUseDefaultSMSAPI:(GOPManager *)manager;
-```
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器
-
-### gtOnePass:willRequestSMS:withReplacedHandler:
-
-修改默认发送短信的请求
-
-**Declaration**
-
-```
-- (void)gtOnePass:(GOPManager *)manager willRequestSMS:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
-```
-
-**Discussion**
-
-只有当`shouldUseDefaultSMSAPI:`返回`YES`后, 此方法才会被调用
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器		
-originalRequest|原始请求
-replacedHandler|返回修改后请求回调
-
-### gtOnePass:didReceiveSMS:withError:
-
-处理发送短信验证接口的返回
-
-**Declaration**
-
-```
-- (void)gtOnePass:(GOPManager *)manager didReceiveSMS:(NSData *)data withError:(NSError *)error;
-```
-
-**Discussion**
-
-只有当`shouldUseDefaultSMSAPI:`返回`YES`后, 此方法才会被调用
-
-**Parameters**
-
-Param		|Description	
-----------|------------	
-manager 	|验证管理器		
-data		|接收到的返回数据
-error		|请求中的错误
+[Error Code清单](#ErrorCode)
 
 # ErrorCode
 
@@ -277,9 +245,9 @@ error		|请求中的错误
 
 ErrorCode	|Description	
 ----------|------------	
--200 		|客户端错误		
--300		|网络连接中的错误
--500		|客户端错误
+-200 		|客户端错误, 由客户端内部错误导致
+-300		|网络连接中的错误, 请检查应用的网络权限以及是否开启了数据网络
+-500		|服务端错误, 由服务端内部错误导致
 
 ## test-Button
 
@@ -321,6 +289,10 @@ ErrorCode	|Description
 -1011		|`NSURLErrorBadServerResponse `服务器无响应
 -1012		|`NSURLErrorUserCancelledAuthentication `客户端取消了安全认证, 或者证书不匹配或服务端不支持ssl和tls
 -1013		|`NSURLErrorUserAuthenticationRequired `客户端要求安全认证, 服务端不支持ssl或tls
+-1014		|`NSURLErrorZeroByteResource `返回字节流为空
+-1015		|`NSURLErrorCannotDecodeRawData `无法解析的原始数据
+-1016		|`NSURLErrorCannotDecodeContentData `解析返回内容错误
+-1017		|`NSURLErrorCannotParseResponse `无法解析响应体
 -1102		|`NSURLErrorNoPermissionsToReadFile `无资源访问权限, 一般为`challenge`等参数有误, `challenge`只可被用来请求一次, 失效后可能会遇到该问题
 -1200		|`NSURLErrorSecureConnectionFailed `创建安全连接失败
 -1201		|`NSURLErrorServerCertificateHasBadDate `服务端证书异常

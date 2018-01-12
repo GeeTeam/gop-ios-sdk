@@ -11,6 +11,11 @@
 @protocol GOPManagerDelegate;
 @class GOPResult;
 
+typedef NS_ENUM(NSInteger, GOPPhoneNumEncryptOption) {
+    GOPPhoneNumEncryptOptionNone = 0,   // none
+    GOPPhoneNumEncryptOptionSha256      // sha256
+};
+
 typedef NS_ENUM(NSInteger, GOPResultType) {
     GOPResultOnePass,   // OnePass
     GOPResultSMS        // SMS
@@ -42,14 +47,25 @@ typedef void(^GOPFailure)(NSError *error);
 @property (nonatomic, weak) id<GOPManagerDelegate> delegate;
 
 /**
- Diagnosis current network status. If OnePass could work,
- `diagnosisStatus` return YES.
+ Diagnosis current network status.
+ If OnePass could work, `diagnosisStatus` return YES.
  */
 @property (nonatomic, readonly, assign) BOOL diagnosisStatus;
 
 /**
- Initializes and returns a newly allocated GOPManager
- object with the specified frame rectangle
+ Return current phone number.
+ If encrypted, return encrypted phone number.
+ */
+@property (nonatomic, readonly, copy) NSString *currentPhoneNum;
+
+/**
+ Phone number Encryption Option.
+ If encrypted, it will be hard to debug. We recommend developers not to use this option.
+ */
+@property (nonatomic, assign) GOPPhoneNumEncryptOption phoneNumEncryptOption;
+
+/**
+ Initializes and returns a newly allocated GOPManager object.
  
  @discussion Register customID from `geetest.com`, and configure your verifyUrl
              API base on Server SDK. Check Docs on `docs.geetest.com`. If OnePass
@@ -62,11 +78,11 @@ typedef void(^GOPFailure)(NSError *error);
 - (instancetype)initWithCustomID:(NSString *)customID verifyUrl:(NSString *)verifyUrl timeout:(NSTimeInterval)timeout;
 
 /**
- Verify phone number through OnePass. See a sample result from 
- `https://github.com/GeeTeam/gop-ios-sdk/blob/master/SDK/gop-ios-dev-doc.md#verifyphonenumcompletionfailure`
+ Verify phone number through OnePass.
+ See a sample result from `https://github.com/GeeTeam/gop-ios-sdk/blob/master/SDK/gop-ios-dev-doc.md#verifyphonenumcompletionfailure`
  
  @discussion Country Code `+86` Only. Regex rule `^1([3-9])\\d{9}$`.
-             If you don't want to use validate, you should modify customID property
+             If you don't want to use validate, you should modify customID configuration
              by contacting geetest stuff first.
              QQ:2314321393 or E-mail: contact@geetest.com
 
@@ -88,26 +104,7 @@ typedef void(^GOPFailure)(NSError *error);
 @optional
 
 /**
- Replace config request
-
- @param manager GOPManager instance
- @param originalRequest original request
- @param replacedHandler return replaced request
- */
-- (void)gtOnePass:(GOPManager *)manager willRequestConfig:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
-
-/**
- Did receive data from config API, and parse dict callback
- 
- @param manager GOPManager instance
- @param dict config data, NSDictionary format, nullable
- @param error error object, nullable
- @return return config parameters
- */
-- (NSDictionary *)gtOnePass:(GOPManager *)manager didReceiveConfig:(NSDictionary *)dict withError:(NSError *)error;
-
-/**
- Replace verify request
+ Replace verify request.
  
  @param manager GOPManager instance
  @param originalRequest original request
@@ -116,7 +113,7 @@ typedef void(^GOPFailure)(NSError *error);
 - (void)gtOnePass:(GOPManager *)manager willRequestVerify:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
 
 /**
- Did receive data from verify API
+ Did receive data from verify API.
  
  @param manager GOPManager instance
  @param data verify data, NSData format, nullable
@@ -133,7 +130,7 @@ typedef void(^GOPFailure)(NSError *error);
 - (BOOL)shouldUseDefaultSMSAPI:(GOPManager *)manager;
 
 /**
- Replace SMS request
+ Replace SMS request.
  
  @discussion
  Only call this delegate method when shouldUseDefaultSMSAPI: returns YES.
@@ -145,7 +142,7 @@ typedef void(^GOPFailure)(NSError *error);
 - (void)gtOnePass:(GOPManager *)manager willRequestSMS:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest * request))replacedHandler;
 
 /**
- Did receive data from SMS API
+ Did receive data from SMS API.
  
  @discussion
  Only call this delegate method when shouldUseDefaultSMSAPI: returns YES.

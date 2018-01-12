@@ -140,7 +140,8 @@
         NSLog(@"completion: %@", dict.description);
         
         NSString *type = [dict objectForKey:@"type"];
-        if ([type isEqualToString:@"onepass"]) {// No sense Success, onepass成功, 输入的手机号码和本机的sim一致
+        NSNumber *result = [dict objectForKey:@"result"];
+        if ([type isEqualToString:@"onepass"] && [result isEqualToNumber:@(0)]) {// onepass成功, 输入的手机号码和本机的sim一致
             
             [self.nextButton gtm_removeIndicator];
             
@@ -152,16 +153,14 @@
                 [self presentViewController:vc animated:YES completion:nil];
             });
         }
+        else if ([type isEqualToString:@"onepass"] && ![result isEqualToNumber:@(0)]) {// onepass失败且没有购买极验的短信验证服务。一般后续处理为, 调用自己的短信验证码服务。
+            
+            [TipsView showTipOnKeyWindow:@"OnePass未通过" fontSize:14.0];
+        }
         else if ([type isEqualToString:@"sms"]) {// send sms code, onepass失败或发生网络错误
             
-            NSNumber *code = [dict objectForKey:@"GOPCode"];
-            if (code && code.integerValue == -300) {
-                [TipsView showTipOnKeyWindow:@"OnePass需要您的数据网络支持。如果确认已开启数据网络, 可能是您当前的网络不被支持或不稳定。请稍后重试。"];
-            }
-            else {
-                NSString *desc = [NSString stringWithFormat:@"短信原因:\n%@", dict.description];
-                [TipsView showTipOnKeyWindow:desc fontSize:14.0];
-            }
+            NSString *desc = [NSString stringWithFormat:@"短信原因:\n%@", dict.description];
+            [TipsView showTipOnKeyWindow:desc fontSize:14.0];
             
             NSString *message_id = [dict objectForKey:@"message_id"];
             NSString *process_id = [dict objectForKey:@"process_id"];

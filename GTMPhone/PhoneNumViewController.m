@@ -157,7 +157,7 @@
             
             [TipsView showTipOnKeyWindow:@"OnePass未通过" fontSize:14.0];
         }
-        else if ([type isEqualToString:@"sms"]) {//  onepass失败且购买了极验的短信服务, 极验短信验证码已发送成功后收到此结果。下面需要创建UI来处理用户输入的短信验证码。
+        else if ([type isEqualToString:@"sms"]) {//  onepass失败且购买了极验的短信服务, 极验短信验证码已发送成功后收到此结果。下面需要创建UI来处理用户输入的短信验证码。c
             
             NSString *desc = [NSString stringWithFormat:@"短信原因:\n%@", dict.description];
             [TipsView showTipOnKeyWindow:desc fontSize:14.0];

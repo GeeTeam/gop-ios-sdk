@@ -61,7 +61,7 @@
 
 - (GOPManager *)manager {
     if (!_manager) {
-        _manager = [[GOPManager alloc] initWithCustomID:@"7591d0f44d4c265c8441e99c748d936b" verifyUrl:verify_url timeout:10.0];
+        _manager = [[GOPManager alloc] initWithCustomID:@"---<Your Custom ID>---" verifyUrl:verify_url timeout:10.0];
         _manager.delegate = self;
     }
     

@@ -86,6 +86,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B47CA952048E74C00D60752 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7AE688821F7509BE004104B5 /* NSAttributedString+AttributedString.m */,
+				7AE688831F7509BE004104B5 /* NSAttributedString+AttributedString.h */,
+				7AE6887D1F7501AD004104B5 /* UIButton+GTM.h */,
+				7AE6887E1F7501AD004104B5 /* UIButton+GTM.m */,
+				736B66C71F7E24B70052770D /* UIView+GTM.h */,
+				736B66C81F7E24B70052770D /* UIView+GTM.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		6B47CA962048E74C00D60752 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7AA8AA3C1F6134AC0089DDF5 /* Main.storyboard */,
+				7AA8AA3F1F6134AC0089DDF5 /* Assets.xcassets */,
+				7AA8AA411F6134AC0089DDF5 /* LaunchScreen.storyboard */,
+				7AA8AA441F6134AC0089DDF5 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6B47CA972048E74C00D60752 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7AE688711F73A826004104B5 /* MainViewController.h */,
+				7AE688721F73A826004104B5 /* MainViewController.m */,
+				7AE688741F73B4AE004104B5 /* PhoneNumViewController.h */,
+				7AE688751F73B4AE004104B5 /* PhoneNumViewController.m */,
+				7AE688771F73CCA1004104B5 /* VerifySMSViewController.h */,
+				7AE688781F73CCA1004104B5 /* VerifySMSViewController.m */,
+				7AE6887A1F73CD12004104B5 /* ResultViewController.h */,
+				7AE6887B1F73CD12004104B5 /* ResultViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6B47CA982048E74C00D60752 /* GT3Captcha */ = {
+			isa = PBXGroup;
+			children = (
+				733450361FCCF98100D82F01 /* GT3CaptchaEX.h */,
+				733450371FCCF98100D82F01 /* GT3CaptchaEX.m */,
+			);
+			path = GT3Captcha;
+			sourceTree = "<group>";
+		};
+		6B47CA992048F6BE00D60752 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				6B47CA962048E74C00D60752 /* Resources */,
+				6B47CA952048E74C00D60752 /* Categories */,
+				7AA8AA361F6134AC0089DDF5 /* AppDelegate.h */,
+				7AA8AA371F6134AC0089DDF5 /* AppDelegate.m */,
+				7AE688871F750B16004104B5 /* TipsView.h */,
+				7AE688861F750B16004104B5 /* TipsView.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		7333963D1F77B6F900C885C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,30 +178,9 @@
 		7AA8AA321F6134AC0089DDF5 /* GTMPhone */ = {
 			isa = PBXGroup;
 			children = (
-				7AA8AA361F6134AC0089DDF5 /* AppDelegate.h */,
-				7AA8AA371F6134AC0089DDF5 /* AppDelegate.m */,
-				7AE688711F73A826004104B5 /* MainViewController.h */,
-				7AE688721F73A826004104B5 /* MainViewController.m */,
-				7AE688741F73B4AE004104B5 /* PhoneNumViewController.h */,
-				7AE688751F73B4AE004104B5 /* PhoneNumViewController.m */,
-				7AE688771F73CCA1004104B5 /* VerifySMSViewController.h */,
-				7AE688781F73CCA1004104B5 /* VerifySMSViewController.m */,
-				7AE6887A1F73CD12004104B5 /* ResultViewController.h */,
-				7AE6887B1F73CD12004104B5 /* ResultViewController.m */,
-				733450361FCCF98100D82F01 /* GT3CaptchaEX.h */,
-				733450371FCCF98100D82F01 /* GT3CaptchaEX.m */,
-				7AE688821F7509BE004104B5 /* NSAttributedString+AttributedString.m */,
-				7AE688831F7509BE004104B5 /* NSAttributedString+AttributedString.h */,
-				7AE688871F750B16004104B5 /* TipsView.h */,
-				7AE688861F750B16004104B5 /* TipsView.m */,
-				7AE6887D1F7501AD004104B5 /* UIButton+GTM.h */,
-				7AE6887E1F7501AD004104B5 /* UIButton+GTM.m */,
-				736B66C71F7E24B70052770D /* UIView+GTM.h */,
-				736B66C81F7E24B70052770D /* UIView+GTM.m */,
-				7AA8AA3C1F6134AC0089DDF5 /* Main.storyboard */,
-				7AA8AA3F1F6134AC0089DDF5 /* Assets.xcassets */,
-				7AA8AA411F6134AC0089DDF5 /* LaunchScreen.storyboard */,
-				7AA8AA441F6134AC0089DDF5 /* Info.plist */,
+				6B47CA972048E74C00D60752 /* Controllers */,
+				6B47CA982048E74C00D60752 /* GT3Captcha */,
+				6B47CA992048F6BE00D60752 /* Others */,
 				7AA8AA331F6134AC0089DDF5 /* Supporting Files */,
 			);
 			path = GTMPhone;
@@ -373,7 +413,7 @@
 					"$(inherited)",
 					"LOADING=1",
 				);
-				INFOPLIST_FILE = GTMPhone/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GTMPhone/Others/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -400,7 +440,7 @@
 					"$(PROJECT_DIR)/GTMPhone",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "LOADING=1";
-				INFOPLIST_FILE = GTMPhone/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GTMPhone/Others/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

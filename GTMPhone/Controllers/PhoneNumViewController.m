@@ -8,12 +8,12 @@
 
 /**
 * 开发者须读：
-* 极验提供 `身份验证`（极验 OnePass）和 `人机验证` (Sensebot), 开发者在部署验证过程中，请提前阅读以下几点：
-* - 可单独部署 `身份验证`, 也可结合部署 `人机验证` 和 `身份验证`;
+* 极验提供 `身份验证`（极验 OnePass）和 `行为验证` (Sensebot), 开发者在部署验证过程中，请提前阅读以下几点：
+* - 可单独部署 `身份验证`, 也可结合部署 `行为验证` 和 `身份验证`;
 * - 部署上述两种验证模式均需联系极验后台修改相应的配置;
 * - 本 Demo 提供两个常见场景模拟，分别是
 *    - 登录场景：演示部署 `身份验证`
-*    - 注册场景：演示部署 `人机验证` 和 `身份验证`
+*    - 注册场景：演示部署 `行为验证` 和 `身份验证`
 */
 
 #import "PhoneNumViewController.h"
@@ -28,13 +28,13 @@
 
 @import GTOnePass;
 
-
-// 网站主部署的用于test-Button的register接口
+// 行为验证接口
+// register 接口
 #define API1 @"http://www.geetest.com/demo/gt/register-test"
-// 网站主部署的用于test-Button的validate接口
+// validate 接口
 #define API2 @"http://www.geetest.com/demo/gt/validate-test"
 
-// 网站主部署的ONEPASS的校验接口
+// 身份验证接口：网站主部署的ONEPASS的校验接口
 #define verify_url @"http://onepass.geetest.com/check_gateway.php"
 
 @interface PhoneNumViewController () <UITextFieldDelegate, SMSCodeDelegate, ResultVCDelegate, GOPManagerDelegate, GT3CaptchaManagerDelegate>
@@ -56,7 +56,6 @@
 
 @implementation PhoneNumViewController
 
-
 #pragma mark - Getter methods
 - (GOPManager *)manager {
     if (!_manager) {
@@ -65,8 +64,8 @@
         if ([self.type isEqualToString:@"login"]) { // 在登录场景下展示 `身份验证`
             customID = @"请使用在极验后台申请的customID, 用于`身份验证`. ";
             
-        } else if ([self.type isEqualToString:@"register"]) { // 在注册场景下展示 `人机验证` 和 `身份验证`
-            customID = @"请使用在极验后台申请的customID, 用于`人机验证` 和 `身份验证`. ";
+        } else if ([self.type isEqualToString:@"register"]) { // 在注册场景下展示 `行为验证` 和 `身份验证`
+            customID = @"请使用在极验后台申请的customID, 用于`行为验证` 和 `身份验证`. ";
         }
         
         _manager = [[GOPManager alloc] initWithCustomID:customID verifyUrl:verify_url timeout:10.0];
@@ -130,7 +129,7 @@
         [self startOnePass:nil]; // Note: 仅使用`身份验证`时，validate 置为 nil.
         
     } else if ([self.type isEqualToString:@"register"]) {
-        [self.captchaEx startGT3Captcha]; // Note: 使用 `身份验证` 和 `人机验证` 时，需从 `人机验证` 成功后取得 validate 供 `身份验证` 流程使用.
+        [self.captchaEx startGT3Captcha]; // Note: 使用 `行为验证` 和 `身份验证` 时，需从 `行为验证` 成功后取得 validate 供 `身份验证` 流程使用.
     }
 }
 
@@ -217,24 +216,24 @@
 // Customize the request for VERIFY api and you can modify properties of NSURLRequest's instance such as HTTPMethod, timeoutInterval, allHTTPHeaderFields and so on
 /*
  - (void)gtOnePass:(GOPManager *)manager willRequestVerify:(NSURLRequest *)originalRequest withReplacedHandler:(void (^)(NSURLRequest *))replacedHandler {
- NSMutableURLRequest *mRequest = [originalRequest mutableCopy];
+     NSMutableURLRequest *mRequest = [originalRequest mutableCopy];
  
- NSString *originalAbsoluteURLString = mRequest.URL.absoluteURL.absoluteString;
- NSString *newString = [NSString stringWithFormat:@"%@%@", originalAbsoluteURLString, @"&testToken=test"];
- NSURL *url = [NSURL URLWithString:newString];
- mRequest.URL = url;
- mRequest.HTTPMethod = @"POST";
- mRequest.timeoutInterval = 5.0;
- replacedHandler([mRequest copy]);
+     NSString *originalAbsoluteURLString = mRequest.URL.absoluteURL.absoluteString;
+     [mRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+     NSString *newString = [NSString stringWithFormat:@"%@%@", originalAbsoluteURLString, @"&testToken=test"];
+     NSURL *url = [NSURL URLWithString:newString];
+     mRequest.URL = url;
+     mRequest.HTTPMethod = @"POST";
+     mRequest.timeoutInterval = 5.0;
+     replacedHandler([mRequest copy]);
  }
- */
+*/
 
-
-#pragma mark - GT3CaptchaManager Delegate 人机验证代理方法
+#pragma mark - GT3CaptchaManager Delegate 行为验证代理方法
 
 - (void)gtCaptchaUserDidCloseGTView:(GT3CaptchaManager *)manager {
     [self.nextButton gtm_removeIndicator];
-    [TipsView showTipOnKeyWindow:@"用户取消了人机验证"];
+    [TipsView showTipOnKeyWindow:@"用户取消了行为验证"];
 }
 
 - (void)gtCaptcha:(GT3CaptchaManager *)manager errorHandler:(GT3Error *)error {

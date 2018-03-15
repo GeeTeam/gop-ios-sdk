@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B3B83B1205A16AD00471ACE /* GTOnePass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3B83B2205A16AD00471ACE /* GTOnePass.framework */; };
+		6B3B83B6205A184B00471ACE /* GTOnePass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3B83B3205A184B00471ACE /* GTOnePass.framework */; };
+		6B3B83B7205A184B00471ACE /* GT3Captcha.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B3B83B4205A184B00471ACE /* GT3Captcha.bundle */; };
+		6B3B83B8205A184B00471ACE /* GT3Captcha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3B83B5205A184B00471ACE /* GT3Captcha.framework */; };
 		730590741FA1EB80002A3296 /* TYRZNoUISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730590731FA1EB80002A3296 /* TYRZNoUISDK.framework */; };
-		7326B4671FBC11980048EB83 /* GTOnePass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7326B4661FBC11980048EB83 /* GTOnePass.framework */; };
 		733450381FCCF98100D82F01 /* GT3CaptchaEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 733450371FCCF98100D82F01 /* GT3CaptchaEX.m */; };
-		73672CC71FAC766B001B4F67 /* GT3Captcha.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 73672CC61FAC766B001B4F67 /* GT3Captcha.bundle */; };
 		736B66C91F7E24B70052770D /* UIView+GTM.m in Sources */ = {isa = PBXBuildFile; fileRef = 736B66C81F7E24B70052770D /* UIView+GTM.m */; };
 		739D1EC01F9DE72D007E6CA7 /* GT3Captcha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739D1EBF1F9DE72D007E6CA7 /* GT3Captcha.framework */; };
 		7AA8AA351F6134AC0089DDF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA8AA341F6134AC0089DDF5 /* main.m */; };
@@ -40,11 +42,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B3B83B2205A16AD00471ACE /* GTOnePass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTOnePass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B3B83B3205A184B00471ACE /* GTOnePass.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTOnePass.framework; path = SDK/GTOnePass.framework; sourceTree = "<group>"; };
+		6B3B83B4205A184B00471ACE /* GT3Captcha.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GT3Captcha.bundle; path = SDK/GT3Captcha.bundle; sourceTree = "<group>"; };
+		6B3B83B5205A184B00471ACE /* GT3Captcha.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GT3Captcha.framework; path = SDK/GT3Captcha.framework; sourceTree = "<group>"; };
 		730590731FA1EB80002A3296 /* TYRZNoUISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TYRZNoUISDK.framework; path = GTMPhone/TYRZNoUISDK.framework; sourceTree = "<group>"; };
 		7326B4661FBC11980048EB83 /* GTOnePass.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTOnePass.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GTProject-cbmehunkkzbhkjbipfhlbytpoajq/Build/Products/Debug-iphoneos/GTOnePass.framework"; sourceTree = "<group>"; };
 		733450361FCCF98100D82F01 /* GT3CaptchaEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GT3CaptchaEX.h; sourceTree = "<group>"; };
 		733450371FCCF98100D82F01 /* GT3CaptchaEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GT3CaptchaEX.m; sourceTree = "<group>"; };
-		73672CC61FAC766B001B4F67 /* GT3Captcha.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GT3Captcha.bundle; path = GTMPhone/GT3Captcha.bundle; sourceTree = "<group>"; };
 		736B66C71F7E24B70052770D /* UIView+GTM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GTM.h"; sourceTree = "<group>"; };
 		736B66C81F7E24B70052770D /* UIView+GTM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GTM.m"; sourceTree = "<group>"; };
 		739D1EBF1F9DE72D007E6CA7 /* GT3Captcha.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GT3Captcha.framework; path = "../gt3captcha-ios-sdk/build/Debug-iphoneos/GT3Captcha.framework"; sourceTree = "<group>"; };
@@ -77,9 +82,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7326B4671FBC11980048EB83 /* GTOnePass.framework in Frameworks */,
+				6B3B83B8205A184B00471ACE /* GT3Captcha.framework in Frameworks */,
+				6B3B83B1205A16AD00471ACE /* GTOnePass.framework in Frameworks */,
 				730590741FA1EB80002A3296 /* TYRZNoUISDK.framework in Frameworks */,
 				739D1EC01F9DE72D007E6CA7 /* GT3Captcha.framework in Frameworks */,
+				6B3B83B6205A184B00471ACE /* GTOnePass.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +157,7 @@
 		7333963D1F77B6F900C885C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6B3B83B2205A16AD00471ACE /* GTOnePass.framework */,
 				7326B4661FBC11980048EB83 /* GTOnePass.framework */,
 				739D1EBF1F9DE72D007E6CA7 /* GT3Captcha.framework */,
 			);
@@ -159,7 +167,9 @@
 		7AA8AA271F6134AC0089DDF5 = {
 			isa = PBXGroup;
 			children = (
-				73672CC61FAC766B001B4F67 /* GT3Captcha.bundle */,
+				6B3B83B4205A184B00471ACE /* GT3Captcha.bundle */,
+				6B3B83B5205A184B00471ACE /* GT3Captcha.framework */,
+				6B3B83B3205A184B00471ACE /* GTOnePass.framework */,
 				730590731FA1EB80002A3296 /* TYRZNoUISDK.framework */,
 				7AA8AA321F6134AC0089DDF5 /* GTMPhone */,
 				7AA8AA311F6134AC0089DDF5 /* Products */,
@@ -257,7 +267,7 @@
 				7AA8AA431F6134AC0089DDF5 /* LaunchScreen.storyboard in Resources */,
 				7AA8AA401F6134AC0089DDF5 /* Assets.xcassets in Resources */,
 				7AA8AA3E1F6134AC0089DDF5 /* Main.storyboard in Resources */,
-				73672CC71FAC766B001B4F67 /* GT3Captcha.bundle in Resources */,
+				6B3B83B7205A184B00471ACE /* GT3Captcha.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +417,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GTMPhone",
+					"$(PROJECT_DIR)/SDK",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -438,6 +449,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GTMPhone",
+					"$(PROJECT_DIR)/SDK",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "LOADING=1";
 				INFOPLIST_FILE = "$(SRCROOT)/GTMPhone/Others/Resources/Info.plist";

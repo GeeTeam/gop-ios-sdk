@@ -34,7 +34,7 @@
 // validate 接口
 #define API2 @"http://www.geetest.com/demo/gt/validate-test"
 
-// 身份验证接口：网站主部署的ONEPASS的校验接口
+// 身份验证接口：网站主部署的 OnePass 的校验接口
 #define verify_url @"http://onepass.geetest.com/check_gateway.php"
 
 @interface PhoneNumViewController () <UITextFieldDelegate, SMSCodeDelegate, ResultVCDelegate, GOPManagerDelegate, GT3CaptchaManagerDelegate>

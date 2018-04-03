@@ -148,6 +148,14 @@ OnePass代理
 @property (nonatomic, readonly, copy) NSString *currentPhoneNum;
 ```
 
+### phoneNumEncryptOption
+
+配置当前手机号的加密方式，当前提供非加密和加密两个枚举选项。特别提醒：如果开启手机号加密，请联系极验后台开启此功能，否则将无法识别手机号。
+
+```objc
+@property (nonatomic, assign) GOPPhoneNumEncryptOption phoneNumEncryptOption;
+```
+
 ## Method
 
 ### initWithCustomID:verifyUrl:timeout:

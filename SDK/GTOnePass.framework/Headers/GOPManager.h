@@ -9,38 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @protocol GOPManagerDelegate;
-@class GOPResult;
 
 typedef NS_ENUM(NSInteger, GOPPhoneNumEncryptOption) {
     GOPPhoneNumEncryptOptionNone = 0,   // none
     GOPPhoneNumEncryptOptionSha256      // sha256
 };
 
-typedef NS_ENUM(NSInteger, GOPResultType) {
-    GOPResultOnePass,   // OnePass
-    GOPResultSMS        // SMS
-};
-
 typedef void(^GOPCompletion)(NSDictionary *dict);
 typedef void(^GOPFailure)(NSError *error);
-
-@interface GOPResult : NSObject
-
-@property (nonatomic, readonly, assign) GOPResultType type;
-
-@property (nonatomic, readonly, copy) NSString *resultCode;// @"0" is success, otherwise fail.
-
-@property (nonatomic, readonly, copy) NSString *customID;// custom id
-@property (nonatomic, readonly, copy) NSString *processID;// process id
-
-@property (nonatomic, readonly, copy) NSString *content;// content, OnePass SUCCESS only
-
-@property (nonatomic, readonly, copy) NSString *messageID;// message id, SMS SUCCESS
-
-@property (nonatomic, readonly, assign) NSTimeInterval duration;// duration of onepass
-@property (nonatomic, readonly, copy) NSDictionary *metadata;
-
-@end
 
 @interface GOPManager : NSObject
 
@@ -49,6 +25,8 @@ typedef void(^GOPFailure)(NSError *error);
 /**
  Diagnosis current network status.
  If OnePass could work, `diagnosisStatus` return YES.
+ 
+ @discussion In the extreme situation, `diagnosisStatus` isn't reliable.
  */
 @property (nonatomic, readonly, assign) BOOL diagnosisStatus;
 
@@ -61,6 +39,7 @@ typedef void(^GOPFailure)(NSError *error);
 /**
  Phone number Encryption Option.
  If encrypted, it will be hard to debug. We recommend developers not to use this option.
+ If you want use this option, you should register this feature through us first.
  */
 @property (nonatomic, assign) GOPPhoneNumEncryptOption phoneNumEncryptOption;
 

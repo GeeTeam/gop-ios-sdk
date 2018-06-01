@@ -26,13 +26,18 @@ typedef void(^GOPFailure)(NSError *error);
  Diagnosis current network status.
  If OnePass could work, `diagnosisStatus` return YES.
  
- @discussion In the extreme situation, `diagnosisStatus` isn't reliable.
+ @discussion
+ In the extreme situation, `diagnosisStatus` isn't reliable.
  */
 @property (nonatomic, readonly, assign) BOOL diagnosisStatus;
 
 /**
  Return current phone number.
  If encrypted, return encrypted phone number.
+ 
+ @discussion
+ Before OnePass callback, `currentPhoneNum` return
+ original phone number.
  */
 @property (nonatomic, readonly, copy) NSString *currentPhoneNum;
 
@@ -97,6 +102,10 @@ typedef void(^GOPFailure)(NSError *error);
  @param manager GOPManager instance
  @param data verify data, NSData format, nullable
  @param error error object, nullable
+ 
+ @discussion
+ If use this delegate method, you will not be able to use
+ the completion and the failure of `verifyPhoneNum:withCaptchaValidate:completion:failure:`
  */
 - (void)gtOnePass:(GOPManager *)manager didReceiveVerify:(NSData *)data withError:(NSError *)error;
 

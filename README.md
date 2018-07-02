@@ -1,6 +1,6 @@
 # GTOnePass iOS SDK
 
-了解产品: [www.geetest.com](www.geetest.com)
+了解产品: [www.geetest.com](http://www.geetest.com)
 
 需要拖入仓库`SDK`路径下的`GTOnePass.framework`, `TYRENoUISDK.framework` 2个文件
 

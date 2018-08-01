@@ -28,14 +28,14 @@
 
 @import GTOnePass;
 
-// 行为验证接口
-// register 接口
-#define API1 @"http://www.geetest.com/demo/gt/register-test"
-// validate 接口
-#define API2 @"http://www.geetest.com/demo/gt/validate-test"
+#warning 行为验证: 获取验证开启参数的API1接口
+#define API1 @"http://yyy.xxx.com/path1/api1"
 
-// 身份验证接口：网站主部署的 OnePass 的校验接口
-#define verify_url @"http://onepass.geetest.com/check_gateway.php"
+#warning 行为验证: 进行验证结果校验的API2接口
+#define API2 @"http://yyy.xxx.com/path1/api2"
+
+#warning 身份验证接口: 进行OnePass结果校验的接口
+#define verify_url @"http://zzz.xxx.com/path2/verify"
 
 @interface PhoneNumViewController () <UITextFieldDelegate, SMSCodeDelegate, ResultVCDelegate, GOPManagerDelegate, GT3CaptchaManagerDelegate>
 
@@ -62,10 +62,12 @@
         
         NSString *customID = nil;
         if ([self.type isEqualToString:@"login"]) { // 在登录场景下展示 `身份验证`
-            customID = @"请使用在极验后台申请的customID, 用于`身份验证`. ";
+#warning 请使用在极验后台申请的开通了`身份验证`的customID.
+            customID = @"123456qwertyuiopasdfghjklzxcvbnm";
             
         } else if ([self.type isEqualToString:@"register"]) { // 在注册场景下展示 `行为验证` 和 `身份验证`
-            customID = @"请使用在极验后台申请的customID, 用于`行为验证` 和 `身份验证`. ";
+#warning 请使用在极验后台申请的开通了`行为验证`和`身份验证`的customID.
+            customID = @"1234567890qwertyuiopasdfghjklzxc";
         }
         
         _manager = [[GOPManager alloc] initWithCustomID:customID verifyUrl:verify_url timeout:10.0];

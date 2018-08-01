@@ -117,7 +117,8 @@
     }];
     NSData *data = [postResult dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://onepass.geetest.com/check_message.php?message_id=%@&client=ios&t=%.0f", self.messageID, [[[NSDate alloc] init] timeIntervalSince1970] * 1000]];
+#warning 短信验证接口: 进行OnePass校验失败后, 用于补充失败场景
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://zzz.xxx.com/path2/?message_id=%@&client=ios&t=%.0f", self.messageID, [[[NSDate alloc] init] timeIntervalSince1970] * 1000]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:(NSURLRequestCachePolicy)0 timeoutInterval:5.0];
     request.HTTPMethod = @"POST";
     request.HTTPBody = data;
